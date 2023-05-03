@@ -15,6 +15,31 @@ void ArrayInit(int *pop, int *group, int *idg, bool *safety, int P, int clock){
     }
 }
 
+void Contamination(bool* safety, int* idg, int* a){
+    for (clock=0; clock < E; clock++){  if (idg[clock]==idg[a-1]){ safety[clock]==0;}}
+}
+
+void Triage(bool* safety, int* idg, int* group, int* pop,int* a){
+
+    if (b==0){
+      Contamination(safety, idg, a);
+    }
+
+    else{
+        if(safety[a-1]==0 || safety[b-1]==0){ Contamination(safety, idg, a);}
+    }
+
+}
+
+void C(int a, int b, int c, int* idg, int* group, int* pop, bool* safety){
+
+    if (idg[a-1]==idg[b-1]){return;}
+
+    c=idg[b-1]
+    
+
+}
+
 int main (){
 
     scanf (" %d %d", &P, &E);
@@ -36,42 +61,18 @@ int main (){
     ArrayInit(pop, group, idg, safety, P, 0);
 
     for (clock = 0; clock < E; clock++){
+
+        scanf("%c", cmd);
+
         switch(cmd){
         
             case 'c':
-                scanf ("%d %d", &a, &b);
-                grupos--;
 
-                if (idg[a-1]>idg[b-1])
-                    {c=a; a=b; b=c;}
+                scanf ("%d, %d", a, b);
 
-                if(idg[a-1]==a && idg[b-1]==b)
-                    checker = idg[b-1];
-                        for(clock=idg[b-1];clock<(P+1);clock++){
-                            if (idg[clock]==checker){
-                                idg[clock]=idg[a-1]
-                            }
-                        }
-                    }
+                if( idg[a-1]<idg[b-1] ){ c=a; a=b; b=c;}
 
-                else{
-
-                    //if (idg[a-1]=a) == transforma todos os id de grupo idg [b-1] em id do grupo de a( do grupo em que o maior numero AKA b estava contido)
-                    if (idg[a-1]==a){
-                        checker = idg[b-1];
-                        for(clock=idg[b-1];clock<(P+1);clock++){
-                            if (idg[clock]==checker){
-                                idg[clock]=idg[a-1];
-                            }
-                        }
-                    }
-                }
-
-                if(safety[a-1]==0 || safety[b-1]==0){
-                    if(safety)
-                }
-
-                Grouping();
+                C(a, b, 0, idg, group, pop, safety);
 
                 break;
         
