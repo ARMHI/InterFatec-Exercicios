@@ -19,7 +19,7 @@ void Contamination(bool* safety, int* idg, int* a){
     for (clock=0; clock < E; clock++){  if (idg[clock]==idg[a-1]){ safety[clock]==0;}}
 }
 
-void Triage(bool* safety, int* idg, int* group, int* pop,int* a){
+void Triage(bool* safety, int* idg, int* group, int* pop,int a, int b){
 
     if (b==0){
       Contamination(safety, idg, a);
@@ -31,12 +31,28 @@ void Triage(bool* safety, int* idg, int* group, int* pop,int* a){
 
 }
 
-void C(int a, int b, int c, int* idg, int* group, int* pop, bool* safety){
+void GroupCount(int a, int b, int* group, int* idg){
+    
+
+
+}
+
+
+void Fusing(int a, int b, int c, int* idg, int* group, int* pop, bool* safety){
 
     if (idg[a-1]==idg[b-1]){return;}
 
-    c=idg[b-1]
+    c=idg[b-1];
+
+    for(clock=(idg[a-1]-1); clock<E; clock++){
+
+        if (idg[clock]==c){
+            idg[clock]=idg[a-1];
+        }
+        GroupCount();
+    }
     
+    Triage(safety, idg, group, pop, a, b);
 
 }
 
@@ -72,7 +88,7 @@ int main (){
 
                 if( idg[a-1]<idg[b-1] ){ c=a; a=b; b=c;}
 
-                C(a, b, 0, idg, group, pop, safety);
+                Fusing(a, b, 0, idg, group, pop, safety);
 
                 break;
         
