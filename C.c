@@ -1,13 +1,14 @@
-#include <stdlib.h>
+ #include <stdlib.h>
 #include <stdio.h>
 
 
 int main (){
 
-char arrays[200] = {0}, arrayn[400] = {0}, alphabet[26]= {'a', 'b', 'c', 'd', 'e','f', 'g','h', 'i','j', 'k','l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+char arrays[200] = {0},r, arrayn[400] = {0}, alphabet[26]= {'a', 'b', 'c', 'd', 'e','f', 'g','h', 'i','j', 'k','l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 
-int x = 1, c, alphaclock, clock, numclock = 0, size;
-
+int x = 1, c, alphaclock, clock, numclock = 0, size, regulador;
+    
+    r='0';
     //entrada
     fgets (arrays, 200, stdin);
     fgets (arrayn, 400, stdin);
@@ -24,12 +25,15 @@ int x = 1, c, alphaclock, clock, numclock = 0, size;
     //execução
 
     for(clock =0; clock< size; clock++){
-
+      if(arrays[clock]=='w'){
+        arrays[clock]=' ';}
+        
+        else{
     // discovering letter in 1st array
         alphaclock = 0;
         while ((arrays[clock] != alphabet[alphaclock])){alphaclock++;}
 
-       // printf("___> %d <___", alphaclock);
+       //printf("___> %d <___", alphaclock);
     
 
 
@@ -42,30 +46,38 @@ int x = 1, c, alphaclock, clock, numclock = 0, size;
         
     //    printf("identified");
     // fixing arrays   
-
+    regulador = arrayn[numclock] - r;
+    
+    numclock++;
+    //printf (" ^^^ %d ___\n", alphaclock);
     if (x=0){ 
-        alphaclock = alphaclock - arrayn[numclock]; 
+        alphaclock = alphaclock - regulador; 
         if (alphaclock <0){ alphaclock = 26 - alphaclock;}
-        numclock ++;
+//printf (" x =0 \n");
     }
 
     if (x=1){ 
-        alphaclock = alphaclock + arrayn[numclock]; 
+        alphaclock = alphaclock + regulador; 
         if (alphaclock > 25){ alphaclock =  alphaclock - 26;}
-        numclock ++;
-    }
+  //printf (" x =1 \n");
+  
+   }
+    
+    //printf(">>> %d <<<", alphaclock);
 
     // finalyzing array
-    printf (" >>> %c <<<", alphabet[alphaclock]);
+    //printf (" >>> %c <<<", alphabet[alphaclock]);
 
     arrays[clock] = alphabet[alphaclock];
+    }
 
 
     }
 
-    printf("____> %s <-----", arrays);
+    printf("%s", arrays);
 
 
     return 0;
 
 }
+      
